@@ -2231,9 +2231,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conexasaude/hero@workspace:.":
+"@daktus/components@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@conexasaude/hero@workspace:."
+  resolution: "@daktus/components@workspace:."
   dependencies:
     "@babel/core": 7.2.0
     "@babel/plugin-proposal-class-properties": ^7.13.0

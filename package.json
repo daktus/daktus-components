@@ -1,6 +1,6 @@
 {
   "name": "@daktus/components",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "scripts": {
     "dev": "yarn storybook",
     "build": "rollup -c",
@@ -82,13 +82,10 @@
   "files": [
     "build"
   ],
-  "repository": "git@github.com:daktus/daktus-components.git",
+  "repository": "https://github.com/daktus/daktus-components.git",
   "author": {
     "name": "Gabriel Rocha",
     "email": "gbrrochagbr@gmail.com"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/daktus"
   },
   "license": "MIT",
   "dependencies": {
