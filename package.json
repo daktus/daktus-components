@@ -83,7 +83,13 @@
     "build"
   ],
   "repository": "git@github.com:daktus/daktus-components.git",
-  "author": "Gabriel Rocha <gbrrochagbr@gmail.com>",
+  "author": {
+    "name": "Gabriel Rocha",
+    "email": "gbrrochagbr@gmail.com"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/daktus"
+  },
   "license": "MIT",
   "dependencies": {
     "clone-deep": "^4.0.1",
