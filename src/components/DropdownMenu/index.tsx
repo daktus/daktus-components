@@ -42,7 +42,7 @@ export const DropdownMenu: FunctionComponent<DropdownMenuProps> = ({
   })
   const anchorEl = useRef(null)
   const hideTitle = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down('xs'),
+    theme.breakpoints.down('sm'),
   )
   const cs = useStyles({ hideTitle })
   const handleLabelClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
