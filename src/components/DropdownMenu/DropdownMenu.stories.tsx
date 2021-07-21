@@ -3,6 +3,7 @@ import { Story, Meta } from '@storybook/react'
 import theme from '@/theme'
 import { DropdownMenu } from '.'
 import { DropdownMenuProps } from './types'
+import { MdExitToApp, MdTrackChanges } from 'react-icons/md'
 
 export default {
   title: 'Components/DropdownMenu',
@@ -21,11 +22,20 @@ export default {
 
 const Template: Story<DropdownMenuProps> = args => (
   <DropdownMenu
+    {...args}
     avatar="G"
     labelTitle="Gabriel Rocha"
     labelSubtitle="gabriel.rocha@daktus.co"
-    onLabelClick={() => alert('abre menu')}
-    {...args}
+    menuItems={[
+      {
+        label: 'Trocar de plataforma',
+        icon: <MdTrackChanges />,
+      },
+      {
+        label: 'Logout',
+        icon: <MdExitToApp />,
+      },
+    ]}
   />
 )
 

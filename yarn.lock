@@ -2297,6 +2297,7 @@ __metadata:
     react: ^17.0.1
     react-dom: ^17.0.2
     react-icons: ^4.2.0
+    react-key-from-object: ^0.0.7
     rollup: ^2.38.5
     rollup-plugin-cleaner: ^1.0.0
     rollup-plugin-peer-deps-external: ^2.2.4
@@ -14241,6 +14242,15 @@ fsevents@^1.2.7:
   version: 17.0.1
   resolution: "react-is@npm:17.0.1"
   checksum: 5a83dfc78e7adcb93d632bf367b0733db650e3abd2e9c57c33b87e50d201212c1884b0d7bcf13e692f1556189fa1b87f9f3e0ba10fe858fd6aebe83ed4fcd1ea
+  languageName: node
+  linkType: hard
+
+"react-key-from-object@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "react-key-from-object@npm:0.0.7"
+  peerDependencies:
+    react: ^16.8.3 || ^17
+  checksum: 1dfe066db477f321a38b2184a388e5601c791e65c4a0cf670108158dba2bd0d54a99cc23bbe3f1349bcd5c8849e590896c5bc05fb4607ef8d671a8da9f58c4a4
   languageName: node
   linkType: hard
 

@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<Theme, { hideTitle: boolean }>({
   root: {
     color: '#202020',
     textAlign: 'end',
@@ -14,9 +14,11 @@ const useStyles = makeStyles({
     alignItems: 'center',
   },
 
-  avatar: {
+  avatar: ({ hideTitle }) => ({
     fontSize: '.875rem',
-  },
+    marginRight: 10,
+    marginLeft: hideTitle ? 0 : 20,
+  }),
 
   rightSide: {
     display: 'flex',

@@ -1,16 +1,27 @@
-import { Fragment, FunctionComponent } from 'react'
+import {
+  FunctionComponent,
+  MouseEventHandler,
+  useRef,
+  useCallback,
+  useMemo,
+  useEffect,
+  useState,
+} from 'react'
+import { createChainedFunction } from '@/utils/createChainedFunction'
 import {
   Avatar,
   Button,
   ListItemText,
+  ListItemIcon,
+  Menu,
+  MenuItem,
   Theme,
+  Typography,
   useMediaQuery,
+  useControlled,
 } from '@material-ui/core'
-import {
-  MdExitToApp,
-  MdKeyboardArrowDown,
-  MdTrackChanges,
-} from 'react-icons/md'
+
+import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md'
 import { DropdownMenuProps } from './types'
 import useStyles from './styles'
 
@@ -19,19 +30,42 @@ export const DropdownMenu: FunctionComponent<DropdownMenuProps> = ({
   labelTitle = '',
   labelSubtitle = '',
   avatar = '',
+  open: openProp,
+  onClose,
+  menuItems,
 }) => {
-  const cs = useStyles()
+  const [open, setOpen] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'DropdonMenu',
+    state: 'open',
+  })
+  const anchorEl = useRef(null)
   const hideTitle = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down('sm'),
+    theme.breakpoints.down('xs'),
+  )
+  const cs = useStyles({ hideTitle })
+  const handleLabelClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
+    event => {
+      setOpen(true)
+      onLabelClick && onLabelClick(event)
+    },
+    [onLabelClick, setOpen],
+  )
+
+  const handleClose = useMemo(
+    () => createChainedFunction(() => setOpen(false), onClose),
+    [onClose, setOpen],
   )
 
   return (
-    <Fragment>
+    <div>
       <Button
         color="primary"
         variant="text"
-        onClick={onLabelClick}
+        onClick={handleLabelClick}
         className={cs.root}
+        ref={anchorEl}
       >
         <div className={cs.menuLabelWrapper}>
           {!hideTitle && (
@@ -50,33 +84,43 @@ export const DropdownMenu: FunctionComponent<DropdownMenuProps> = ({
           </div>
         </div>
       </Button>
-      {/* <Menu
-        id="long-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: 48 * 4.5,
-            width: '30ch',
-            marginTop: '55px',
-          },
-        }}
-      >
-        <MenuItem onClick={handleClickChangePlatform}>
-          <ListItemIcon>
-            <MdTrackChanges />
-          </ListItemIcon>
-          <Typography>Trocar de plataforma</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleClickSignOut}>
-          <ListItemIcon>
-            <MdExitToApp />
-          </ListItemIcon>
-          <Typography>Sair</Typography>
-        </MenuItem>
-      </Menu> */}
-    </Fragment>
+      {menuItems && (
+        <Menu
+          id="long-menu"
+          anchorEl={() => anchorEl.current}
+          keepMounted
+          open={open}
+          onClose={handleClose}
+          PaperProps={{
+            style: {
+              maxHeight: 48 * 4.5,
+              width: '30ch',
+              marginTop: '55px',
+            },
+          }}
+        >
+          {menuItems.map((menuItem, index) => {
+            const { label, icon: Icon, onClick } = menuItem
+            console.log(typeof Icon === 'function')
+            return (
+              <MenuItem key={index} onClick={onClick}>
+                <ListItemIcon>
+                  {Icon ? (
+                    typeof Icon === 'function' ? (
+                      <Icon key={'icon' + index} />
+                    ) : (
+                      Icon
+                    )
+                  ) : (
+                    <MdKeyboardArrowRight />
+                  )}
+                </ListItemIcon>
+                <Typography>{label}</Typography>
+              </MenuItem>
+            )
+          })}
+        </Menu>
+      )}
+    </div>
   )
 }
