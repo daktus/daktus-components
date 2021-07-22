@@ -101,7 +101,6 @@ export const DropdownMenu: FunctionComponent<DropdownMenuProps> = ({
         >
           {menuItems.map((menuItem, index) => {
             const { label, icon: Icon, onClick } = menuItem
-            console.log(typeof Icon === 'function')
             return (
               <MenuItem key={index} onClick={onClick}>
                 <ListItemIcon>
