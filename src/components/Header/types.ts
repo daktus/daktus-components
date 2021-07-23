@@ -1,3 +1,8 @@
+import { MouseEventHandler, ReactNode } from 'react'
+
 export interface HeaderProps {
-  hello?: string
+  logoSize?: number
+  rightContent?: ReactNode
+  logoContent?: ReactNode
+  onHamburguerClick?: MouseEventHandler<HTMLButtonElement>
 }
